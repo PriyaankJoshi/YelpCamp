@@ -9,13 +9,11 @@ var Comment = require('./models/comments');
 var User = require('./models/user');
 var seedDB = require('./seeds');
 
-mongoose.connect('mongodb+srv://test:test@cluster0-6ahfi.mongodb.net/test?retryWrites=true&w=majority');
+mongoose.connect('WRITE THE MongoDB KEY ASSIGNED TO YOU OVER HERE');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
-
-//seedDB();
 
 //PASSPORT CONFIGURATION
 app.use(require('express-session')({
@@ -33,18 +31,6 @@ app.use(function(req, res, next){
     res.locals.currentUser = req.user;
     next();
 });
-
-// var arr = [
-//     {name: 'Image 1', image: 'https://picsum.photos/id/237/200/300'},
-//     {name: 'Image 2', image: 'https://picsum.photos/200/300?grayscale'},
-//     {name: 'Image 3', image: 'https://picsum.photos/id/870/200/300?grayscale&blur=2'},
-//     {name: 'Image 1', image: 'https://picsum.photos/id/237/200/300'},
-//     {name: 'Image 3', image: 'https://picsum.photos/id/870/200/300?grayscale&blur=2'},
-//     {name: 'Image 1', image: 'https://picsum.photos/id/237/200/300'},
-//     {name: 'Image 3', image: 'https://picsum.photos/id/870/200/300?grayscale&blur=2'},
-//     {name: 'Image 1', image: 'https://picsum.photos/id/237/200/300'},
-//     {name: 'Image 3', image: 'https://picsum.photos/id/870/200/300?grayscale&blur=2'}
-// ];
 
 app.get('/', function(req, res){
     res.render('campgrounds/landing');
